@@ -13,7 +13,7 @@ import {
 
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
-function Navbar() {
+export function Navbar() {
   return (
     <div className="flex mt-3 justify-end md:justify-between lg:justify-between   ">
       <div className="hidden md:flex space-x-2 pl-2 items-center text-xs rouned-full">
@@ -30,7 +30,7 @@ function Navbar() {
         </div>
         <div className="w-7 h-7 rounded-full justify-center ">
           <Image alt="" src="/announcement.png" width={20} height={20} />
-          <div className="absolute flex items-center justify-center bg-purple-500 top-2 right-[67px] rounded-full w-4 text-white text-xs h-4">
+          <div className="absolute fixed flex items-center justify-center bg-purple-500 -top-1 right-[50px] rounded-full w-4 text-white text-xs h-4">
             1
           </div>
         </div>
@@ -63,5 +63,3 @@ function Navbar() {
     </div>
   );
 }
-
-export default Navbar;

@@ -1,4 +1,5 @@
-import { Menu, Navbar } from "@/components/ui";
+import { Menu } from "@/components/ui/menu/menu";
+import { Navbar } from "@/components/ui/navbar/navbar";
 
 export default async function DashboardLayout({
   children,
@@ -14,7 +15,9 @@ export default async function DashboardLayout({
 
       {/* right */}
       <div className="basis-[86%] md:basis-[92%] lg:basis-[84%] bg-[#f7f8fa] overflow-y-scroll ">
-        <Navbar />
+        <div className="relative">
+          <Navbar />
+        </div>
         {children}
       </div>
     </div>
