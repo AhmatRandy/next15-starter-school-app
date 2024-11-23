@@ -1,12 +1,14 @@
+import { Announcement } from "@/components/ui/announcement/announcement";
 import UserCard from "@/components/ui/card/use-card";
 import {
   CircleChart,
   AttendanceChart,
   FinanceChart,
 } from "@/components/ui/chart";
+import { Calender } from "@/components/ui/event-calender/calender";
 import React from "react";
-// import { PrismaClient } from "@prisma/client";
 
+// import { PrismaClient } from "@prisma/client";
 // const prisma = new PrismaClient();
 export default async function AdminPage() {
   // const post = await prisma.user.findMany();
@@ -117,15 +119,15 @@ export default async function AdminPage() {
 
   return (
     <div className="p-3 flex flex-col md:flex-row gap-4">
-      <div className=" lg:basis-2/3 ">
-        <div className="flex gap-4 justify-between flex-wrap  ">
+      <div className="lg:basis-2/3">
+        <div className="flex gap-4 justify-between flex-wrap">
           <UserCard title="Teacher" />
           <UserCard title="Parent" />
           <UserCard title="Student" />
           <UserCard title="Staff" />
         </div>
-        <div className="mt-3 flex  gap-2 flex-wrap md:flex-nowrap lg:flex-nowrap ">
-          <div className="grow md:grow-0 basis-72  ">
+        <div className="mt-3 flex gap-2 flex-wrap md:flex-wrap lg:flex-nowrap">
+          <div className="grow basis-72">
             <CircleChart
               data={circleChartData}
               title="Students"
@@ -134,7 +136,7 @@ export default async function AdminPage() {
           </div>
           <div className="grow">
             <AttendanceChart
-              title="Attendence"
+              title="Attendance"
               data={attendenceChartData}
               className="h-full"
             />
@@ -148,7 +150,13 @@ export default async function AdminPage() {
           />
         </div>
       </div>
-      <div className="lg:basis-1/3">rigth</div>
+      <div className="lg:basis-1/3">
+        <Calender />
+        <Announcement
+          className="mt-2 p-3"
+          description="lorem ipsum lorem ipsum"
+        />
+      </div>
     </div>
   );
 }
