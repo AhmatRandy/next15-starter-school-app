@@ -21,7 +21,7 @@ export const BigCalender = () => {
       startAccessor="start"
       views={["work_week", "day"]}
       view={view}
-      style={{ height: 500 }}
+      style={{ height: 720 }}
       onView={handleView}
       endAccessor="end"
       min={new Date(2025, 1, 0, 8, 0, 0)}

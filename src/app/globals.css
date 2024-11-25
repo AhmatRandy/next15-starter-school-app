@@ -21,9 +21,9 @@ body {
   color: black !important;
 }
 
-.rbc-btn-group:first-child {
+/* .rbc-btn-group:first-child {
   display: none !important;
-}
+} */
 
 .rbc-toolbar-label {
   text-align: right !important;
@@ -74,15 +74,15 @@ body {
 }
 
 .rbc-event {
-  border: none !important;
-
   width: 99% !important;
+  border-color: aliceblue !important;
   font-size: 10px;
 }
 
 .rbc-event-label {
   margin-bottom: 5px;
 }
+
 @layer base {
   :root {
     --background: 0 0% 100%;
