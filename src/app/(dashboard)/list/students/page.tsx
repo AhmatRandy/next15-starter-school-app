@@ -6,10 +6,10 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Table } from "@/components/ui/table/table";
 import { Teacher } from "@/types/teacher";
 
-const TeacherList = () => {
-  const data: Teacher[] = [
+const StudentList = () => {
+  const data = [
     {
-      fullName: "tandy",
+      fullName: "students",
       teacherId: "miller",
       subjects: "Chemistry",
       classes: "4B",
@@ -129,7 +129,6 @@ const TeacherList = () => {
       address: "Jakarta",
     },
   ];
-
   const columns = React.useMemo<ColumnDef<Teacher>[]>(
     () => [
       {
@@ -186,4 +185,4 @@ const TeacherList = () => {
   );
 };
 
-export default TeacherList;
+export default StudentList;
