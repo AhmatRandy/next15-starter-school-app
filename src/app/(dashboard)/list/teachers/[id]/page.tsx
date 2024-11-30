@@ -28,20 +28,20 @@ const TeacherDetail = () => {
                 Cupiditate odit voluptate ipsa{" "}
               </p>
 
-              <div className=" text-xs font-medium flex justify-between items-center flex-wrap  gap-3">
-                <div className="flex md:1/3 gap-2 w-full items-center ">
+              <div className=" text-xs font-medium flex bg-red-400 justify-between items-center flex-wrap gap-2">
+                <div className="flex md:w-1/3 gap-2 w-full items-center ">
                   <Image src="/blood.png" alt="" width={14} height={14} />
                   <span>A+</span>
                 </div>
-                <div className="flex md:1/3 gap-2 w-full items-center ">
+                <div className="flex md:w-1/3 gap-2 w-full items-center  ">
                   <Image src="/date.png" alt="" width={14} height={14} />
                   <span>January 2025</span>
                 </div>
-                <div className="flex md:1/3 gap-2 w-full items-center ">
+                <div className="flex md:w-1/3 gap-2 w-full items-center ">
                   <Image src="/mail.png" alt="" width={14} height={14} />
                   <span>user@gmail.com</span>
                 </div>
-                <div className="flex md:1/3 gap-2 w-full items-center ">
+                <div className="flex md:w-1/3 gap-2 w-full items-center ">
                   <Image src="/phone.png" alt="" width={14} height={14} />
                   <span>+1 234 567</span>
                 </div>
