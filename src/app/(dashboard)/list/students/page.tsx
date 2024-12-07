@@ -5,6 +5,7 @@ import React from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import { Table } from "@/components/ui/table/table";
 import { Teacher } from "@/types/teacher";
+import Link from "next/link";
 
 const StudentList = () => {
   const data = [
@@ -134,7 +135,14 @@ const StudentList = () => {
       {
         accessorKey: "fullName",
         header: "Full Name",
-        cell: (info) => info.getValue(),
+        // cell: (info) => info.getValue(),
+        cell: (info: any) => {
+          return (
+            <span>
+              <Link href="/list/students/1"> {info.getValue()}</Link>
+            </span>
+          );
+        },
       },
       {
         accessorKey: "teacherId",

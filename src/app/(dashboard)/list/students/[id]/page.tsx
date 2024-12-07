@@ -76,8 +76,8 @@ const TeacherDetail = () => {
                 className="w-6 h-6"
               />
               <div>
-                <h1 className="text-xl font-semibold">3</h1>
-                <span className="text-sm text-gray-400">Branch</span>
+                <h1 className="text-xl font-semibold">18</h1>
+                <span className="text-sm text-gray-400">Grade</span>
               </div>
             </Card>
             <Card className="p-2 rounded-sm flex gap-2 md:w-[48%] ">
@@ -89,8 +89,8 @@ const TeacherDetail = () => {
                 className="w-6 h-6"
               />
               <div>
-                <h1 className="text-xl font-semibold">9</h1>
-                <span className="text-sm text-gray-400">Lesson</span>
+                <h1 className="text-xl font-semibold">6th</h1>
+                <span className="text-sm text-gray-400">Grade</span>
               </div>
             </Card>
             <Card className="p-2 rounded-sm flex gap-2 md:w-[48%] ">
@@ -102,7 +102,7 @@ const TeacherDetail = () => {
                 className="w-6 h-6"
               />
               <div>
-                <h1 className="text-xl font-semibold">7th</h1>
+                <h1 className="text-xl font-semibold">6A</h1>
                 <span className="text-sm text-gray-400">Class</span>
               </div>
             </Card>
