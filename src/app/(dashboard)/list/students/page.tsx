@@ -136,6 +136,7 @@ const StudentList = () => {
         accessorKey: "fullName",
         header: "Full Name",
         // cell: (info) => info.getValue(),
+
         cell: (info: any) => {
           return (
             <span>
