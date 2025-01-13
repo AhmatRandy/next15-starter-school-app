@@ -9,7 +9,7 @@ export default async function DashboardLayout({
   return (
     <div className="h-screen flex">
       {/* LEFT */}
-      <div className="basis-[14%] md:basis-[8%] lg:basis-[16%]  ">
+      <div className="basis-[14%] md:basis-[8%] lg:basis-[16%]">
         <Menu />
       </div>
 

@@ -6,19 +6,16 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Table } from "@/components/ui/table/table";
 import { Teacher } from "@/types/teacher";
 import Link from "next/link";
-
+import { useModal } from "@/hooks/use-modal";
+import { modalProps } from "@/const/modal";
+import { Modal } from "@/components/modal/modal";
+import { title } from "process";
 const StudentList = () => {
+  const [modalProps, showModal] = useModal<modalProps>();
+
   const data = [
     {
       fullName: "students",
-      teacherId: "miller",
-      subjects: "Chemistry",
-      classes: "4B",
-      phone: "081258351781",
-      address: "Jakarta",
-    },
-    {
-      fullName: "tandy",
       teacherId: "miller",
       subjects: "Chemistry",
       classes: "4B",
@@ -175,8 +172,19 @@ const StudentList = () => {
         header: "Action",
         cell: () => {
           return (
-            <div>
-              <button>Action</button>
+            <div className="flex gap-2 items-center">
+              <button
+                onClick={() => {
+                  showModal({
+                    open: true,
+                    title: "oke",
+                    subtitle: "hello",
+                  });
+                }}
+              >
+                add
+              </button>
+              <button>edit</button>
             </div>
           );
         },
@@ -185,12 +193,15 @@ const StudentList = () => {
     []
   );
   return (
-    <div className="mt-2 p-2">
-      <Card className="p-3 ">
-        <h1 className="font-semibold">All Teachers</h1>
-        <Table columns={columns} data={data} />
-      </Card>
-    </div>
+    <>
+      <div className="mt-2 p-2">
+        <Card className="p-3 ">
+          <h1 className="font-semibold">All Teachers</h1>
+          <Table columns={columns} data={data} />
+        </Card>
+      </div>
+      <Modal {...modalProps} />
+    </>
   );
 };
 

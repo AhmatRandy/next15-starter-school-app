@@ -6,10 +6,10 @@ import { role } from "@/lib/data";
 
 export function Menu() {
   return (
-    <div className="mt-4 text-sm">
+    <div className="mt-1 text-sm">
       {menuItems.map((datas) => (
-        <div className="flex flex-col gap-2" key={datas?.title}>
-          <span className="hidden lg:block text-gray-400 font-light my-4 pl-3">
+        <div className="flex flex-col gap-1" key={datas?.title}>
+          <span className="hidden lg:block text-gray-400 font-light pl-3">
             {datas.title}
           </span>
           {datas.items.map((i) => {

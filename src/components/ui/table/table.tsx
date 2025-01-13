@@ -39,22 +39,23 @@ export function Table<T>({ columns, data }: TableProps<T>) {
 
   return (
     <>
-      <div className=" mb-4 flex justify-end text-xs rouned-full">
+      <div className="mb-6 flex justify-end">
         <Input
           type="text"
-          className="w-52 h-6 ring-[1.5px] ring-gray-300"
+          className="w-64 h-10 ring-2 ring-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-200 rounded-lg px-4"
           placeholder="Search"
         />
       </div>
-      <div className="overflow-x-auto">
-        <table className=" border-collapse rounded-lg overflow-hidden w-full">
-          <thead className="bg-gray-100 text-gray-700 ">
+
+      <div className="overflow-x-auto shadow-xl rounded-lg">
+        <table className="min-w-full border-collapse bg-white rounded-lg">
+          <thead className="bg-gradient-to-r from-teal-500 to-teal-600 text-white shadow-md">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="px-4 py-3  text-sm text-left border-b"
+                    className="px-6 py-4 text-sm font-semibold text-left uppercase tracking-wider border-b border-gray-200"
                   >
                     {header.isPlaceholder
                       ? null
@@ -67,16 +68,19 @@ export function Table<T>({ columns, data }: TableProps<T>) {
               </tr>
             ))}
           </thead>
-          <tbody className="bg-white text-gray-800">
+          <tbody className="text-gray-700">
             {table.getRowModel().rows.map((row, rowIndex) => (
               <tr
                 key={row.id}
                 className={`${
-                  rowIndex % 2 === 0 ? "bg-gray-50" : "bg-white"
-                } hover:bg-gray-100`}
+                  rowIndex % 2 === 0 ? "bg-white" : "bg-gray-50"
+                } hover:bg-teal-100 hover:shadow-lg transition-all duration-300`}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="px-4 py-3 border-b text-sm">
+                  <td
+                    key={cell.id}
+                    className="px-6 py-4 text-sm border-b border-gray-200"
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
@@ -85,63 +89,65 @@ export function Table<T>({ columns, data }: TableProps<T>) {
           </tbody>
         </table>
       </div>
-      <div className="flex justify-between flex-row-reverse">
-        <div className="flex">
+
+      {/* Pagination Section */}
+      <div className="flex justify-between items-center mt-6">
+        <div className="flex items-center space-x-3">
+          {/* First Page Button */}
           <button
-            className=" p-1"
+            className="p-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 focus:ring-2 focus:ring-teal-300 transition-all duration-200"
             onClick={() => table.firstPage()}
             disabled={!table.getCanPreviousPage()}
           >
             {"<<"}
           </button>
 
+          {/* Previous Page Button */}
           <button
-            className="p-1"
+            className="p-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 focus:ring-2 focus:ring-teal-300 transition-all duration-200"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
             {"<"}
           </button>
 
-          <div className="flex items-center gap-1">
+          {/* Page Number Buttons */}
+          <div className="flex items-center gap-2">
             {Array.from({ length: table.getPageCount() }, (_, index) => (
               <button
                 key={index}
-                className={` px-1 rounded-sm ${
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   table.getState().pagination.pageIndex === index
-                    ? "bg-blue-400 text-white"
-                    : ""
+                    ? "bg-teal-600 text-white shadow-md"
+                    : "bg-teal-100 text-teal-600 hover:bg-teal-200"
                 }`}
-                onClick={() => {
-                  if (index < table.getState().pagination.pageIndex) {
-                    table.previousPage();
-                  } else if (index > table.getState().pagination.pageIndex) {
-                    table.nextPage();
-                  }
-                }}
+                onClick={() => table.setPageIndex(index)}
               >
                 {index + 1}
               </button>
             ))}
           </div>
 
+          {/* Next Page Button */}
           <button
-            className=" p-1"
+            className="p-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 focus:ring-2 focus:ring-teal-300 transition-all duration-200"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
             {">"}
           </button>
 
+          {/* Last Page Button */}
           <button
-            className=" p-1"
+            className="p-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 focus:ring-2 focus:ring-teal-300 transition-all duration-200"
             onClick={() => table.lastPage()}
             disabled={!table.getCanNextPage()}
           >
             {">>"}
           </button>
 
-          <span className="flex items-center gap-1">
+          {/* Page Info */}
+          <span className="flex items-center gap-2 text-sm text-teal-600">
             <div>Page</div>
             <strong>
               {table.getState().pagination.pageIndex + 1} of{" "}
@@ -149,18 +155,21 @@ export function Table<T>({ columns, data }: TableProps<T>) {
             </strong>
           </span>
         </div>
-        <select
-          value={table.getState().pagination.pageSize}
-          onChange={(e) => {
-            table.setPageSize(Number(e.target.value));
-          }}
-        >
-          {[10, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
+
+        {/* Page Size Selector */}
+        <div>
+          <select
+            value={table.getState().pagination.pageSize}
+            onChange={(e) => table.setPageSize(Number(e.target.value))}
+            className="border border-teal-300 rounded-md p-2 text-sm"
+          >
+            {[10, 20, 30, 40, 50].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                Show {pageSize}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
     </>
   );
