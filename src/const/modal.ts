@@ -1,6 +1,9 @@
+type actionType = "Add" | "Delete" | "Edit";
+
 export interface modalProps {
   open: boolean;
   title?: string;
   onClose?: () => void;
-  action: string;
+  id?: string;
+  action: actionType;
 }

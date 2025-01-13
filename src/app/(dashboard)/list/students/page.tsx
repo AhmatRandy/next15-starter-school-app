@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useModal } from "@/hooks/use-modal";
 import { modalProps } from "@/const/modal";
 import { Modal } from "@/components/modal/modal";
-import { title } from "process";
+import { Action } from "@/app/types";
 const StudentList = () => {
   const [modalProps, showModal] = useModal<modalProps>();
 
@@ -170,21 +170,35 @@ const StudentList = () => {
       {
         accessorKey: "action",
         header: "Action",
-        cell: () => {
+        cell: (info) => {
+          console.log(info);
           return (
             <div className="flex gap-2 items-center">
               <button
                 onClick={() => {
                   showModal({
+                    action: Action.Add,
                     open: true,
                     title: "oke",
-                    subtitle: "hello",
                   });
                 }}
               >
                 add
               </button>
               <button>edit</button>
+              <button
+                onClick={() => {
+                  showModal({
+                    action: Action.Delete,
+                    open: true,
+                    title:
+                      "All data will be lose. Are you sure you want to delete this subject ?",
+                    id: info.row.id,
+                  });
+                }}
+              >
+                delete
+              </button>
             </div>
           );
         },
@@ -195,7 +209,7 @@ const StudentList = () => {
   return (
     <>
       <div className="mt-2 p-2">
-        <Card className="p-3 ">
+        <Card className="p-3">
           <h1 className="font-semibold">All Teachers</h1>
           <Table columns={columns} data={data} />
         </Card>

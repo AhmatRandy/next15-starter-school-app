@@ -39,15 +39,15 @@ export function Table<T>({ columns, data }: TableProps<T>) {
 
   return (
     <>
-      <div className="mb-6 flex justify-end">
+      <div className="flex -mt-3 justify-end">
         <Input
           type="text"
-          className="w-64 h-10 ring-2 ring-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-200 rounded-lg px-4"
+          className="w-52 ring-2 h-6 ring-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-200 rounded-lg px-4"
           placeholder="Search"
         />
       </div>
 
-      <div className="overflow-x-auto shadow-xl rounded-lg">
+      <div className="overflow-x-auto shadow-xl rounded-lg mt-2">
         <table className="min-w-full border-collapse bg-white rounded-lg">
           <thead className="bg-gradient-to-r from-teal-500 to-teal-600 text-white shadow-md">
             {table.getHeaderGroups().map((headerGroup) => (
