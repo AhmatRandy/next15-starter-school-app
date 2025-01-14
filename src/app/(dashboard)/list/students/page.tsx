@@ -9,7 +9,11 @@ import Link from "next/link";
 import { useModal } from "@/hooks/use-modal";
 import { modalProps } from "@/const/modal";
 import { Modal } from "@/components/modal/modal";
-import { Action } from "@/app/types";
+import { Action } from "@/types";
+import { MdEdit } from "react-icons/md";
+import { EditIcon } from "@/components/ui/icon/edit-icon";
+import { AddTask } from "@/components/ui/icon/add-task-icon";
+import { DeletIcon } from "@/components/ui/icon/delete-icon";
 const StudentList = () => {
   const [modalProps, showModal] = useModal<modalProps>();
 
@@ -132,7 +136,7 @@ const StudentList = () => {
       {
         accessorKey: "fullName",
         header: "Full Name",
-        // cell: (info) => info.getValue(),
+        // cell: (info) => ,
 
         cell: (info: any) => {
           return (
@@ -171,10 +175,10 @@ const StudentList = () => {
         accessorKey: "action",
         header: "Action",
         cell: (info) => {
-          console.log(info);
           return (
             <div className="flex gap-2 items-center">
-              <button
+              <AddTask
+                size={22}
                 onClick={() => {
                   showModal({
                     action: Action.Add,
@@ -182,23 +186,30 @@ const StudentList = () => {
                     title: "oke",
                   });
                 }}
-              >
-                add
-              </button>
-              <button>edit</button>
-              <button
+                className="text-green-700"
+              />
+              <EditIcon
+                size={22}
+                onClick={() => {
+                  showModal({
+                    action: Action.Edit,
+                    open: true,
+                    title: "oke",
+                  });
+                }}
+                className="text-green-700"
+              />
+              <DeletIcon
+                size={22}
                 onClick={() => {
                   showModal({
                     action: Action.Delete,
                     open: true,
-                    title:
-                      "All data will be lose. Are you sure you want to delete this subject ?",
-                    id: info.row.id,
+                    title: "Are you sure want to delete this data ? ",
                   });
                 }}
-              >
-                delete
-              </button>
+                className="text-green-700"
+              />
             </div>
           );
         },
