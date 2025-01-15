@@ -10,7 +10,6 @@ import { useModal } from "@/hooks/use-modal";
 import { modalProps } from "@/const/modal";
 import { Modal } from "@/components/modal/modal";
 import { Action } from "@/types";
-import { MdEdit } from "react-icons/md";
 import { EditIcon } from "@/components/ui/icon/edit-icon";
 import { AddTask } from "@/components/ui/icon/add-task-icon";
 import { DeletIcon } from "@/components/ui/icon/delete-icon";
@@ -183,7 +182,7 @@ const StudentList = () => {
                   showModal({
                     action: Action.Add,
                     open: true,
-                    title: "oke",
+                    title: "Create Teacher",
                   });
                 }}
                 className="text-green-700"

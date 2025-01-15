@@ -1,6 +1,7 @@
 import { Action } from "@/types";
 import Image from "next/image";
 import { Input } from "../ui/input/input";
+import { TeacherForm } from "../ui/form/teacher-form";
 
 interface ModalProps {
   open: boolean;
@@ -10,7 +11,7 @@ interface ModalProps {
   action: string;
 }
 
-export const Modal = ({ open, title, onClose, action, id }: ModalProps) => {
+export const Modal = ({ open, title, onClose, action }: ModalProps) => {
   const handleClick = (event: React.MouseEvent) => {
     event.stopPropagation();
   };
@@ -18,17 +19,10 @@ export const Modal = ({ open, title, onClose, action, id }: ModalProps) => {
   const Form = () => {
     return (
       <>
-        {action.includes(Action.Delete) && (
-          <form
-            action=""
-            className="flex flex-col justify-center items-center gap-3"
-          >
-            <Input className="w-1/2" />
-            <span>{title}</span>
-            <button className="text-white self-center rounded-md bg-red-500 p-2 px-2">
-              Delete
-            </button>
-          </form>
+        {action.includes(Action.Add) && (
+          <div>
+            <TeacherForm title={title} />
+          </div>
         )}
       </>
     );
@@ -44,9 +38,10 @@ export const Modal = ({ open, title, onClose, action, id }: ModalProps) => {
           >
             <div
               onClick={handleClick}
-              className="bg-white p-4 relative z-100 rounded-md w-[50%]"
+              className="bg-white p-4 relative z-100 rounded-md min-w-[50%]"
             >
               <Form />
+
               <div className="absolute right-2 top-2">
                 <Image
                   src="/close.png"
