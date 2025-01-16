@@ -1,10 +1,12 @@
 import { z } from "zod";
 export const SignupFormSchema = z.object({
-  firstName: z.string().nonempty({ message: "First name is required." }),
+  username: z.string().nonempty({ message: "First name is required." }),
 
-  lastName: z.string().nonempty({ message: "Last name is required." }),
+  email: z.string().nonempty({ message: "Last name is required." }),
 
-  address: z.string().nonempty({ message: "Address is required." }),
+  password: z.string().nonempty({ message: "Address is required." }),
+  firstName: z.string().nonempty({ message: "Address is required." }),
+  lastName: z.string().nonempty({ message: "Address is required." }),
 
   status: z.string().nonempty({ message: "Status is required." }),
 

@@ -10,6 +10,15 @@ import {
 } from "@tanstack/react-table";
 import React from "react";
 import { Input } from "../input/input";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "../pagination";
 
 interface TableProps<T> {
   data: T[];
@@ -36,7 +45,7 @@ export function Table<T>({ columns, data }: TableProps<T>) {
       pagination,
     },
   });
-
+  console.log("aa", table.firstPage);
   return (
     <>
       <div className="flex -mt-3 justify-end">
@@ -89,79 +98,46 @@ export function Table<T>({ columns, data }: TableProps<T>) {
           </tbody>
         </table>
       </div>
+      <div className="mt-2">
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious
+                className="cursor-pointer text-gray-600 hover:text-gray-800 transition-colors duration-200 ease-in-out"
+                onClick={() => table.previousPage()}
+                isActive={!table.getCanPreviousPage()}
+              />
+            </PaginationItem>
+            <PaginationItem>
+              {Array.from({ length: table.getPageCount() }, (_, index) => (
+                <PaginationLink
+                  onClick={() => table.setPageIndex(index)}
+                  key={index}
+                  isActive={table.getState().pagination.pageIndex === index}
+                  className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-teal-200 hover:text-gray-900 transition-colors duration-200 ease-in-out"
+                >
+                  {index + 1}
+                </PaginationLink>
+              ))}
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis className="text-gray-500" />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext
+                className="cursor-pointer text-gray-600 hover:text-gray-800 transition-colors duration-200 ease-in-out"
+                onClick={() => table.nextPage()}
+                isActive={!table.getCanNextPage()}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
 
-      {/* Pagination Section */}
-      <div className="flex justify-between items-center mt-6">
-        <div className="flex items-center space-x-3">
-          {/* First Page Button */}
-          <button
-            className="p-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 focus:ring-2 focus:ring-teal-300 transition-all duration-200"
-            onClick={() => table.firstPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            {"<<"}
-          </button>
-
-          {/* Previous Page Button */}
-          <button
-            className="p-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 focus:ring-2 focus:ring-teal-300 transition-all duration-200"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            {"<"}
-          </button>
-
-          {/* Page Number Buttons */}
-          <div className="flex items-center gap-2">
-            {Array.from({ length: table.getPageCount() }, (_, index) => (
-              <button
-                key={index}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  table.getState().pagination.pageIndex === index
-                    ? "bg-teal-600 text-white shadow-md"
-                    : "bg-teal-100 text-teal-600 hover:bg-teal-200"
-                }`}
-                onClick={() => table.setPageIndex(index)}
-              >
-                {index + 1}
-              </button>
-            ))}
-          </div>
-
-          {/* Next Page Button */}
-          <button
-            className="p-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 focus:ring-2 focus:ring-teal-300 transition-all duration-200"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            {">"}
-          </button>
-
-          {/* Last Page Button */}
-          <button
-            className="p-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 focus:ring-2 focus:ring-teal-300 transition-all duration-200"
-            onClick={() => table.lastPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            {">>"}
-          </button>
-
-          {/* Page Info */}
-          <span className="flex items-center gap-2 text-sm text-teal-600">
-            <div>Page</div>
-            <strong>
-              {table.getState().pagination.pageIndex + 1} of{" "}
-              {table.getPageCount().toLocaleString()}
-            </strong>
-          </span>
-        </div>
-
-        {/* Page Size Selector */}
-        <div>
+        <div className="-mt-9">
           <select
             value={table.getState().pagination.pageSize}
             onChange={(e) => table.setPageSize(Number(e.target.value))}
-            className="border border-teal-300 rounded-md p-2 text-sm"
+            className="border border-teal-300 rounded-md p-2 text-sm bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500 hover:border-teal-500 transition-colors duration-200 ease-in-out"
           >
             {[10, 20, 30, 40, 50].map((pageSize) => (
               <option key={pageSize} value={pageSize}>

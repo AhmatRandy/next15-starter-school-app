@@ -1,6 +1,5 @@
 import { Action } from "@/types";
 import Image from "next/image";
-import { Input } from "../ui/input/input";
 import { TeacherForm } from "../ui/form/teacher-form";
 
 interface ModalProps {
@@ -42,7 +41,7 @@ export const Modal = ({ open, title, onClose, action }: ModalProps) => {
             >
               <Form />
 
-              <div className="absolute right-2 top-2">
+              <div className="absolute right-2 top-2 cursor-pointer">
                 <Image
                   src="/close.png"
                   alt=""

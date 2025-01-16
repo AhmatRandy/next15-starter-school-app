@@ -6,9 +6,11 @@ import { Input } from "@/components/ui/input/input";
 import { SignupFormSchema } from "@/lib/definition";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "../button";
+import { Separator } from "../separator";
 
 interface FormTeacherProps {
-  title: string;
+  title?: string;
 }
 
 type SignUpSchemaType = z.infer<typeof SignupFormSchema>;
@@ -39,49 +41,83 @@ export const TeacherForm = ({ title }: FormTeacherProps) => {
 
   return (
     <>
-      <h3 className="text-2xl font-normal">{title}</h3>
+      <h3 className="text-2xl text-center  font-semibold">{title}</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid grid-cols-2 mt-2 gap-3 md:grid-cols-3 md:gap-3">
+        <p className="mt-4">Authentication Information</p>
+        <Separator className="my-1" orientation="horizontal" />
+        <div className="grid grid-cols-2 mt-5  gap-3 md:grid-cols-3 md:gap-3">
           <div>
-            <label htmlFor="firstName">First Name</label>
-            <Input {...register("firstName")} />
+            <label className="text-sm" htmlFor="username">
+              Username
+            </label>
+            <Input {...register("username")} placeholder="Username" />
+            {errors.username && (
+              <p className="text-red-500 text-sm">{errors.username.message}</p>
+            )}
+          </div>
+          <div>
+            <label className="text-sm" htmlFor="email">
+              Email
+            </label>
+            <Input {...register("email")} placeholder="Email" />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
+          </div>
+          <div>
+            <label className="text-sm" htmlFor="password">
+              Password
+            </label>
+            <Input
+              type="password"
+              {...register("password")}
+              placeholder="Password"
+            />
+            {errors.password && (
+              <p className="text-red-500 text-sm">{errors.password.message}</p>
+            )}
+          </div>
+        </div>
+        <p className="mt-7">Personal Information</p>
+        <Separator className="my-1" orientation="horizontal" />
+        <div className=" mt-6 grid grid-cols-2  gap-3 md:grid-cols-3 md:gap-3">
+          <div>
+            <label className="text-sm" htmlFor="firstName">
+              First Name
+            </label>
+            <Input {...register("firstName")} placeholder="First Name" />
             {errors.firstName && (
               <p className="text-red-500 text-sm">{errors.firstName.message}</p>
             )}
           </div>
           <div>
-            <label htmlFor="lastName">Last Name</label>
-            <Input {...register("lastName")} />
+            <label className="text-sm" htmlFor="lastName">
+              Last Name
+            </label>
+            <Input {...register("lastName")} placeholder="Last Name" />
             {errors.lastName && (
               <p className="text-red-500 text-sm">{errors.lastName.message}</p>
             )}
           </div>
           <div>
-            <label htmlFor="address">Address</label>
-            <Input {...register("address")} />
-            {errors.address && (
-              <p className="text-red-500 text-sm">{errors.address.message}</p>
-            )}
-          </div>
-          <div>
-            <label htmlFor="status">Status</label>
-            <Input {...register("status")} />
-            {errors.status && (
-              <p className="text-red-500 text-sm">{errors.status.message}</p>
-            )}
-          </div>
-          <div>
-            <label htmlFor="gender">Gender</label>
+            <label className="text-sm" htmlFor="gender">
+              Gender
+            </label>
             <Input {...register("gender")} />
             {errors.gender && (
               <p className="text-red-500 text-sm">{errors.gender.message}</p>
             )}
           </div>
         </div>
+
         <div className="flex justify-end mt-2">
-          <button className="disabled:cursor-not-allowed" type="submit">
+          <Button
+            className="disabled:cursor-not-allowed"
+            variant="default"
+            type="submit"
+          >
             Create
-          </button>
+          </Button>
         </div>
       </form>
     </>

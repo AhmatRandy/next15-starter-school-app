@@ -135,8 +135,6 @@ const StudentList = () => {
       {
         accessorKey: "fullName",
         header: "Full Name",
-        // cell: (info) => ,
-
         cell: (info: any) => {
           return (
             <span>
@@ -173,45 +171,43 @@ const StudentList = () => {
       {
         accessorKey: "action",
         header: "Action",
-        cell: (info) => {
-          return (
-            <div className="flex gap-2 items-center">
-              <AddTask
-                size={22}
-                onClick={() => {
-                  showModal({
-                    action: Action.Add,
-                    open: true,
-                    title: "Create Teacher",
-                  });
-                }}
-                className="text-green-700"
-              />
-              <EditIcon
-                size={22}
-                onClick={() => {
-                  showModal({
-                    action: Action.Edit,
-                    open: true,
-                    title: "oke",
-                  });
-                }}
-                className="text-green-700"
-              />
-              <DeletIcon
-                size={22}
-                onClick={() => {
-                  showModal({
-                    action: Action.Delete,
-                    open: true,
-                    title: "Are you sure want to delete this data ? ",
-                  });
-                }}
-                className="text-green-700"
-              />
-            </div>
-          );
-        },
+        cell: (info) => (
+          <div className="flex gap-2 items-center">
+            <AddTask
+              size={22}
+              onClick={() => {
+                showModal({
+                  action: Action.Add,
+                  open: true,
+                  title: "Create a New Teacher",
+                });
+              }}
+              className="text-green-700 hover:text-green-500 transition-colors duration-200 ease-in-out"
+            />
+            <EditIcon
+              size={22}
+              onClick={() => {
+                showModal({
+                  action: Action.Edit,
+                  open: true,
+                  title: "oke",
+                });
+              }}
+              className="text-blue-700 hover:text-blue-500 transition-colors duration-200 ease-in-out"
+            />
+            <DeletIcon
+              size={22}
+              onClick={() => {
+                showModal({
+                  action: Action.Delete,
+                  open: true,
+                  title: "Are you sure want to delete this data ? ",
+                });
+              }}
+              className="text-red-700 hover:text-red-500 transition-colors duration-200 ease-in-out"
+            />
+          </div>
+        ),
       },
     ],
     []
