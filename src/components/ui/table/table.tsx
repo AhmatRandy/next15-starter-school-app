@@ -58,7 +58,7 @@ export function Table<T>({ columns, data }: TableProps<T>) {
 
       <div className="overflow-x-auto shadow-xl rounded-lg mt-2">
         <table className="min-w-full border-collapse bg-white rounded-lg">
-          <thead className="bg-gradient-to-r from-teal-500 to-teal-600 text-white shadow-md">
+          <thead className="bg-[#6c7ae0] text-white shadow-md">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
@@ -83,7 +83,7 @@ export function Table<T>({ columns, data }: TableProps<T>) {
                 key={row.id}
                 className={`${
                   rowIndex % 2 === 0 ? "bg-white" : "bg-gray-50"
-                } hover:bg-teal-100 hover:shadow-lg transition-all duration-300`}
+                } hover:bg-indigo-50 hover:shadow-lg transition-all duration-300`}
               >
                 {row.getVisibleCells().map((cell) => (
                   <td
