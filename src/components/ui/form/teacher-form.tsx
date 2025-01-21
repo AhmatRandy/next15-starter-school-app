@@ -20,15 +20,19 @@ export const TeacherForm = ({ title }: FormTeacherProps) => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<SignUpSchemaType>({
     resolver: zodResolver(SignupFormSchema),
   });
 
+  console.log("error", errors.file?.message);
+
   const onSubmit = async (data: SignUpSchemaType) => {
     console.log(data);
     try {
       const result = await submit(data);
+
       if (result?.status === 200) {
         reset();
       }
@@ -38,8 +42,7 @@ export const TeacherForm = ({ title }: FormTeacherProps) => {
       alert("created");
     }
   };
-
-  console.log(errors);
+  console.log(watch("file"));
 
   return (
     <>
@@ -144,14 +147,14 @@ export const TeacherForm = ({ title }: FormTeacherProps) => {
 
               <div className="-mt-1">
                 <label>
-                  <input type="file" hidden {...register("files")} />
+                  <input type="file" hidden {...register("file")} />
                   <div className="flex w-28 h-9 px-2 flex-col bg-indigo-600 rounded-full shadow text-white text-xs font-semibold leading-4 items-center justify-center cursor-pointer focus:outline-none">
                     Choose File
                   </div>
                 </label>
               </div>
-              {errors.files && (
-                <p className="text-red-500 text-sm">{errors.files.message}</p>
+              {errors.file && (
+                <p className="text-red-500 text-sm">{errors.file.message}</p>
               )}
             </div>
           </div>
