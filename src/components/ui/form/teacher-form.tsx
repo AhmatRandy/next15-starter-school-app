@@ -20,16 +20,17 @@ export const TeacherForm = ({ title }: FormTeacherProps) => {
     register,
     handleSubmit,
     reset,
-    watch,
+    setError,
+    clearErrors,
+    setValue,
+    resetField,
     formState: { errors },
   } = useForm<SignUpSchemaType>({
     resolver: zodResolver(SignupFormSchema),
   });
 
-  console.log("error", errors.file?.message);
-
   const onSubmit = async (data: SignUpSchemaType) => {
-    console.log(data);
+    console.log("data", data);
     try {
       const result = await submit(data);
 
@@ -37,12 +38,30 @@ export const TeacherForm = ({ title }: FormTeacherProps) => {
         reset();
       }
     } catch (error) {
-      console.log(error);
+      alert(error);
     } finally {
       alert("created");
     }
   };
-  console.log(watch("file"));
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target?.files[0];
+    console.log("File selected:", file);
+    const validFiles = ["image/jpeg", "image/png"];
+
+    if (!validFiles.includes(file?.type)) {
+      setError("file", { message: "pesan kustom" });
+      // resetField("file");
+      return;
+    }
+
+    if (validFiles.includes(file?.type)) {
+      setValue("file", file);
+      clearErrors("file");
+    }
+  };
+
+  console.log(errors);
 
   return (
     <>
@@ -121,7 +140,7 @@ export const TeacherForm = ({ title }: FormTeacherProps) => {
             <label className="text-sm" htmlFor="blood">
               Blood
             </label>
-            <Input {...register("blood")} />
+            <Input onChange={handleFileChange} />
             {errors.blood && (
               <p className="text-red-500 text-sm">{errors.blood.message}</p>
             )}
@@ -147,7 +166,7 @@ export const TeacherForm = ({ title }: FormTeacherProps) => {
 
               <div className="-mt-1">
                 <label>
-                  <input type="file" hidden {...register("file")} />
+                  <input type="file" {...register("file")} />
                   <div className="flex w-28 h-9 px-2 flex-col bg-indigo-600 rounded-full shadow text-white text-xs font-semibold leading-4 items-center justify-center cursor-pointer focus:outline-none">
                     Choose File
                   </div>

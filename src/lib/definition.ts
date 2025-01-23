@@ -28,10 +28,10 @@ export const SignupFormSchema = z.object({
   blood: z.string().nonempty({ message: "Blood type is required." }),
   file: z
     .instanceof(File)
-    .refine((file) => file.type === "image/png", {
-      message: "Hanya file PNG yang diperbolehkan",
-    })
-    .optional(),
+    .optional()
+    .refine((file) => {
+      return !file;
+    }, "File size must be less than 3MB"),
 });
 
 // export type FormState =
