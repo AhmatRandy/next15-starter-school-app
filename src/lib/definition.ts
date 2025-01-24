@@ -27,22 +27,11 @@ export const SignupFormSchema = z.object({
   gender: z.string().nonempty({ message: "Gender is required." }),
   blood: z.string().nonempty({ message: "Blood type is required." }),
   file: z
-    .instanceof(File)
-    .optional()
-    .refine((file) => {
-      return !file;
-    }, "File size must be less than 3MB"),
+    .union([
+      z.instanceof(File, { message: "File is required" }),
+      z.string().optional(),
+    ])
+    .refine((value) => value instanceof File || typeof value === "string", {
+      message: "File is Required",
+    }),
 });
-
-// export type FormState =
-//   | {
-//       errors?: {
-//         firstName?: string[];
-//         lastName?: string[];
-//         address?: string[];
-//         status?: string[];
-//         gender?: string[];
-//       };
-//       message?: string;
-//     }
-// | undefined;
