@@ -171,7 +171,7 @@ const StudentList = () => {
       {
         accessorKey: "action",
         header: "Action",
-        cell: (info) => (
+        cell: () => (
           <div className="flex gap-2 items-center">
             <AddTask
               size={22}
@@ -180,6 +180,7 @@ const StudentList = () => {
                   action: Action.Add,
                   open: true,
                   title: "Create a New Teacher",
+                  type: "student",
                 });
               }}
               className="text-green-700 hover:text-green-500 transition-colors duration-200 ease-in-out"

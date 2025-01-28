@@ -1,16 +1,10 @@
 import { Action } from "@/types";
 import Image from "next/image";
-import { TeacherForm } from "../ui/form/teacher-form";
+import { TeacherForm } from "@/components/ui/form/teacher-form";
+import { Button } from "@/components/ui/button";
+import { modalProps } from "@/const/modal";
 
-interface ModalProps {
-  open: boolean;
-  title?: string;
-  id?: string;
-  onClose?: () => void;
-  action: string;
-}
-
-export const Modal = ({ open, title, onClose, action }: ModalProps) => {
+export const Modal = ({ open, title, onClose, action, type }: modalProps) => {
   const handleClick = (event: React.MouseEvent) => {
     event.stopPropagation();
   };
@@ -18,9 +12,17 @@ export const Modal = ({ open, title, onClose, action }: ModalProps) => {
   const Form = () => {
     return (
       <>
-        {action.includes(Action.Add) && (
+        {action.includes(Action.Add) && type === "student" && (
           <div>
             <TeacherForm title={title} />
+          </div>
+        )}
+        {action.includes(Action.Delete) && (
+          <div className="flex flex-col justify-center items-center">
+            <p className="mb-4">Are you sure want to delete this data ?</p>
+            <Button className="w-full" variant="danger">
+              {title}
+            </Button>
           </div>
         )}
       </>
@@ -40,7 +42,6 @@ export const Modal = ({ open, title, onClose, action }: ModalProps) => {
               className="bg-white p-4 relative z-100 rounded-md min-w-[50%]"
             >
               <Form />
-
               <div className="absolute right-2 top-2 cursor-pointer">
                 <Image
                   src="/close.png"

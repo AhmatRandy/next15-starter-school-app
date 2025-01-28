@@ -46,6 +46,7 @@ export const TeacherForm = ({ title }: FormTeacherProps) => {
   };
 
   const file = watch("file");
+
   React.useEffect(() => {
     if (file instanceof File) {
       const fileUrl = URL.createObjectURL(file);
