@@ -34,7 +34,6 @@ export const TeacherForm = ({ title }: FormTeacherProps) => {
     console.log("data", data);
     try {
       const result = await submit(data);
-
       if (result?.status === 200) {
         reset();
       }
@@ -171,11 +170,7 @@ export const TeacherForm = ({ title }: FormTeacherProps) => {
         </div>
 
         <div className="flex justify-end mt-4">
-          <Button
-            // className="disabled:cursor-not-allowed"
-            variant="default"
-            type="submit"
-          >
+          <Button variant="default" type="submit">
             Submit
           </Button>
         </div>

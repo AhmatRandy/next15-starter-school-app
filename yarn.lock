@@ -576,6 +576,11 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
+"@prisma/client@^6.3.0":
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-6.3.0.tgz#21cb91be237fa84f03fd2376e599567aea50fc6e"
+  integrity sha512-BY3Fi28PUSk447Bpv22LhZp4HgNPo7NsEN+EteM1CLDnLjig5863jpW+3c3HHLFmml+nB/eJv1CjSriFZ8z7Cg==
+
 "@prisma/debug@6.2.1":
   version "6.2.1"
   resolved "https://registry.yarnpkg.com/@prisma/debug/-/debug-6.2.1.tgz#887719967c4942d125262e48f6c47c45d17c1f61"
