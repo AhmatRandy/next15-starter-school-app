@@ -1,8 +1,14 @@
 export type Teacher = {
-  fullName: string;
-  teacherId: string;
-  subjects: string;
-  classes: string;
+  id: string;
+  username: string;
+  name: string;
+  surname: string;
+  email: string;
   phone: string;
   address: string;
+  img: string;
+  bloodType: string;
+  sex: string;
+  createdAt: string;
+  birthday: string;
 };
