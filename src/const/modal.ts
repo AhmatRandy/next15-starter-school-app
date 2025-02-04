@@ -1,4 +1,4 @@
-type actionType = "Add" | "Delete" | "Edit";
+export type actionType = "Add" | "Delete" | "Edit";
 
 export interface modalProps {
   open: boolean;

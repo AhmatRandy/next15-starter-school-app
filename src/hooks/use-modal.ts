@@ -6,7 +6,7 @@ export const useModal = <T>(props?: T) => {
     open: false,
   } as T);
 
-  const showModal = <T>(props: T) => {
+  const showModal = (props: Partial<T>) => {
     setMergeState((prev) => ({ ...prev, ...props, open: true }));
   };
 
@@ -17,12 +17,12 @@ export const useModal = <T>(props?: T) => {
     }));
   };
 
-  return [
-    {
+  return {
+    modalProps: {
       onClose: () => hide(),
       ...mergeState,
     },
     showModal,
     hide,
-  ] as const;
+  };
 };
