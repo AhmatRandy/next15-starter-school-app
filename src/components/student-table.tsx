@@ -26,11 +26,6 @@ export default function StudentTable({ data }: StudentTableProps) {
       accessorKey: "username",
       header: "Username",
     },
-    // {
-    //   accessorKey: "subjects",
-    //   header: "Subjects",
-    //   cell: ({ row }) => console.log("vvv", row),
-    // },
     {
       accessorKey: "classId",
       header: "classId",

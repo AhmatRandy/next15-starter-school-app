@@ -1,3 +1,5 @@
+"use-client";
+
 import {
   ColumnDef,
   PaginationState,
@@ -45,7 +47,7 @@ export function Table<T>({ columns, data }: TableProps<T>) {
       pagination,
     },
   });
-  console.log("aa", table.firstPage);
+
   return (
     <>
       <div className="flex -mt-3 justify-end">

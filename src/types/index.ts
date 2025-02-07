@@ -9,14 +9,14 @@ export type Teacher = {
   username: string;
   name: string;
   surname: string;
-  email: string;
-  phone: string;
+  email: string | null;
+  phone: string | null;
   address: string;
   img: string | null;
   bloodType: string;
   sex: string;
-  createdAt: string;
-  birthday: string;
+  createdAt: Date;
+  birthday: Date;
 };
 
 export type Student = {

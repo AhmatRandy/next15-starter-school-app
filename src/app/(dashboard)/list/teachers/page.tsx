@@ -1,188 +1,23 @@
-"use client";
-
-import { Card } from "@/components/ui/card/card";
 import React from "react";
-import { ColumnDef } from "@tanstack/react-table";
-import { Table } from "@/components/ui/table/table";
-import { Teacher } from "@/types/teacher";
+import { prisma } from "@/lib/prisma";
+import TeacherTable from "@/components/teacher-table";
 
-const TeacherList = () => {
-  const data: Teacher[] = [
-    {
-      fullName: "tandy",
-      teacherId: "miller",
-      subjects: "Chemistry",
-      classes: "4B",
-      phone: "081258351781",
-      address: "Jakarta",
-    },
-    {
-      fullName: "tandy",
-      teacherId: "miller",
-      subjects: "Chemistry",
-      classes: "4B",
-      phone: "081258351781",
-      address: "Jakarta",
-    },
-    {
-      fullName: "tandy",
-      teacherId: "miller",
-      subjects: "Chemistry",
-      classes: "4B",
-      phone: "081258351781",
-      address: "Jakarta",
-    },
-    {
-      fullName: "tandy",
-      teacherId: "miller",
-      subjects: "Chemistry",
-      classes: "4B",
-      phone: "081258351781",
-      address: "Jakarta",
-    },
-    {
-      fullName: "tandy",
-      teacherId: "miller",
-      subjects: "Chemistry",
-      classes: "4B",
-      phone: "081258351781",
-      address: "Jakarta",
-    },
-    {
-      fullName: "tandy",
-      teacherId: "miller",
-      subjects: "Chemistry",
-      classes: "4B",
-      phone: "081258351781",
-      address: "Jakarta",
-    },
-    {
-      fullName: "tandy",
-      teacherId: "miller",
-      subjects: "Chemistry",
-      classes: "4B",
-      phone: "081258351781",
-      address: "Jakarta",
-    },
-    {
-      fullName: "tandy",
-      teacherId: "miller",
-      subjects: "Chemistry",
-      classes: "4B",
-      phone: "081258351781",
-      address: "Jakarta",
-    },
-    {
-      fullName: "tandy",
-      teacherId: "miller",
-      subjects: "Chemistry",
-      classes: "4B",
-      phone: "081258351781",
-      address: "Jakarta",
-    },
-    {
-      fullName: "tandy",
-      teacherId: "miller",
-      subjects: "Chemistry",
-      classes: "4B",
-      phone: "081258351781",
-      address: "Jakarta",
-    },
-    {
-      fullName: "tandy",
-      teacherId: "miller",
-      subjects: "Chemistry",
-      classes: "4B",
-      phone: "081258351781",
-      address: "Jakarta",
-    },
-    {
-      fullName: "tandy",
-      teacherId: "miller",
-      subjects: "Chemistry",
-      classes: "4B",
-      phone: "081258351781",
-      address: "Jakarta",
-    },
-    {
-      fullName: "tandy",
-      teacherId: "miller",
-      subjects: "Chemistry",
-      classes: "4B",
-      phone: "081258351781",
-      address: "Jakarta",
-    },
-    {
-      fullName: "tandy",
-      teacherId: "miller",
-      subjects: "Chemistry",
-      classes: "4B",
-      phone: "081258351781",
-      address: "Jakarta",
-    },
-    {
-      fullName: "tandy",
-      teacherId: "miller",
-      subjects: "Chemistry",
-      classes: "4B",
-      phone: "081258351781",
-      address: "Jakarta",
-    },
-  ];
+const TeacherList = async ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | undefined };
+}) => {
+  const { page, ...queryParams } = searchParams;
 
-  const columns = React.useMemo<ColumnDef<Teacher>[]>(
-    () => [
-      {
-        accessorKey: "fullName",
-        header: "Full Name",
-        cell: (info) => info.getValue(),
-      },
-      {
-        accessorKey: "teacherId",
-        header: "Teacher ID",
-        cell: (info) => info.getValue(),
-      },
-      {
-        accessorKey: "subjects",
-        header: "Subjects",
-        cell: (info) => info.getValue(),
-      },
-      {
-        accessorKey: "classes",
-        header: "Classes",
-        cell: (info) => info.getValue(),
-      },
-      {
-        accessorKey: "phone",
-        header: "Classes",
-        cell: (info) => info.getValue(),
-      },
-      {
-        accessorKey: "address",
-        header: "Address",
-        cell: (info) => info.getValue(),
-      },
-      {
-        accessorKey: "action",
-        header: "Action",
-        cell: () => {
-          return (
-            <div>
-              <button>Action</button>
-            </div>
-          );
-        },
-      },
-    ],
-    []
-  );
+  const data = await prisma.teacher.findMany();
+
   return (
-    <div className="mt-2 p-2">
-      <Card className="p-3 ">
-        <h1 className="font-semibold">All Teachers</h1>
-        <Table columns={columns} data={data} />
-      </Card>
-    </div>
+    <>
+      <div className="mt-2 p-2">
+        <h1 className="font-semibold">All Students</h1>
+        <TeacherTable data={data} />
+      </div>
+    </>
   );
 };
 
