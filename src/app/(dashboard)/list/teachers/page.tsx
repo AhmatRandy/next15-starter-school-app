@@ -9,7 +9,11 @@ const TeacherList = async ({
 }) => {
   const { page, ...queryParams } = searchParams;
 
-  const data = await prisma.teacher.findMany();
+  const data = await prisma.teacher.findMany({
+    include: {
+      subjects: true,
+    },
+  });
 
   return (
     <>

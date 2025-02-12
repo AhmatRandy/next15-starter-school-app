@@ -4,10 +4,16 @@ export enum Action {
   Add = "Add",
 }
 
+export type Subjects = {
+  id: number;
+  name: string;
+};
+
 export type Teacher = {
   id: string;
   username: string;
   name: string;
+  subjects: Array<Subjects>;
   surname: string;
   email: string | null;
   phone: string | null;

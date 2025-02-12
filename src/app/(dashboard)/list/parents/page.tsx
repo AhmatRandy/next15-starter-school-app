@@ -1,5 +1,3 @@
-"use client";
-
 import { Card } from "@/components/ui/card/card";
 import React from "react";
 import ParentTable from "@/components/parent-table";
