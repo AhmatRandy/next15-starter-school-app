@@ -14,7 +14,12 @@ const Student = async ({
   const p = page ? parseInt(page) : 1;
   const query: Prisma.TeacherWhereInput = {};
 
-  const data = await prisma.student.findMany();
+  const data = await prisma.student.findMany({
+    include: {
+      attendances: true,
+    },
+  });
+  console.log("data", data);
 
   if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {

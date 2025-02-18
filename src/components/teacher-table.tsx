@@ -24,13 +24,12 @@ const TeacherTable = ({ data }: TeacherProps) => {
         accessorKey: "subjects",
         header: "Subjects",
         cell: (props) => {
+          const subjects = props.row.original?.subjects;
           return (
             <>
-              {props.row.original.subjects.map(
-                (items: { name: string; id: number }) => (
-                  <span key={items.id}>{items.name}</span>
-                )
-              )}
+              {subjects.map((items: { name: string; id: number }) => (
+                <span key={items.id}>{items.name}</span>
+              ))}
             </>
           );
         },
