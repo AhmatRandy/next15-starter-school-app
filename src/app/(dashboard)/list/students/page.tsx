@@ -3,31 +3,36 @@ import StudentTable from "@/components/student-table";
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 
+type QueryParams = Prisma.StudentWhereInput & {
+  [key: string]: string | undefined;
+};
+
 const Student = async ({
   searchParams,
 }: {
   searchParams: { [key: string]: string | undefined };
 }) => {
   const { page, ...queryParams } = searchParams;
-  console.log("vvv", queryParams);
 
   const p = page ? parseInt(page) : 1;
-  const query: Prisma.TeacherWhereInput = {};
-
-  const data = await prisma.student.findMany({
-    include: {
-      attendances: true,
-    },
-  });
-  console.log("data", data);
+  const query: QueryParams = {};
 
   if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {
       if (value !== undefined) {
-        console.log("hello");
+        query[key] = value;
       }
     }
   }
+
+  const data = await prisma.student.findMany({
+    where: query,
+    include: {
+      attendances: true,
+    },
+    skip: (p - 1) * 10,
+    take: 10,
+  });
 
   return (
     <>

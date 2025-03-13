@@ -8,13 +8,7 @@ import {
 import { Calender } from "@/components/ui/event-calender/calender";
 import React from "react";
 
-// import { PrismaClient } from "@prisma/client";
-// const prisma = new PrismaClient();
 export default async function AdminPage() {
-  // const post = await prisma.user.findMany();
-
-  // console.log(post);
-
   const circleChartData = [
     {
       name: "Total",
