@@ -1,5 +1,6 @@
-import { Menu } from "@/components/ui/menu/menu";
-import { Navbar } from "@/components/ui/navbar/navbar";
+import { AppSidebar, BreadCrumb } from "@/components/ui/app-sidebar";
+
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 export default async function DashboardLayout({
   children,
@@ -7,19 +8,13 @@ export default async function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="h-screen flex">
-      {/* LEFT */}
-      <div className="basis-[14%] md:basis-[8%] lg:basis-[16%]">
-        <Menu />
-      </div>
-
-      {/* right */}
-      <div className="basis-[86%] md:basis-[92%] lg:basis-[84%] bg-[#f7f8fa] overflow-y-scroll ">
-        <div className="relative">
-          <Navbar />
-        </div>
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarTrigger className="relative z-10 -left-3 top-72 w-10 h-10" />
+      <main className="w-full p-2">
+        <BreadCrumb />
         {children}
-      </div>
-    </div>
+      </main>
+    </SidebarProvider>
   );
 }

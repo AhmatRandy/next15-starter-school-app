@@ -1,4 +1,4 @@
-export const role = "admin";
+export const role = "student";
 
 export const teachersData = [
   {

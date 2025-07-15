@@ -36,10 +36,8 @@ const Student = async ({
 
   return (
     <>
-      <div className="mt-2 p-2">
-        <h1 className="font-semibold">All Students</h1>
-        <StudentTable data={data} />
-      </div>
+      <h1 className="font-semibold">All Students</h1>
+      <StudentTable data={data} />
     </>
   );
 };
