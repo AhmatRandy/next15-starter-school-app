@@ -20,19 +20,16 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  Separator,
 } from "@radix-ui/react-dropdown-menu";
 import { ChevronDown } from "lucide-react";
 import {
   Breadcrumb,
-  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "./breadcrumb";
-import { useState } from "react";
+
 import { usePathname } from "next/navigation";
 import { role } from "@/lib/data";
 
@@ -48,7 +45,7 @@ export function BreadCrumb() {
     { label: "Home", href: "/" },
     ...matchedItems.map((item) => ({ label: item.label, href: item.href })),
   ];
-  console.log("v", breadcrumbs);
+
   return (
     <Breadcrumb>
       <BreadcrumbList>
@@ -95,7 +92,6 @@ export const AppSidebar = () => {
           title="Main Navigation"
           className="flex flex-col space-y-3"
         >
-          <SidebarGroupLabel>Menu</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((data) =>
